@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">BandZone Player unofficial</string>
+    <string name="appTitle">BandZone.cz unofficial app</string>
+    <string name="vyhlada_kapelu">Vyhľadať kapelu</string>
+    <string name="zadajKapelu">Zadaj názov/časť názvu kapely</string>
+    <string name="loading">Moment, idem...</string>
+    <string name="noInternet">Niečo je s internetovým pripojením, skontroluj či je pripojenie funkčné</string>
+    <string name="noMoreBands">To je všetko, už viac kapiel nie je</string>
+    <string name="noBands">Žiadne kapely s takýmto názvom sa nenašli</string>
+    <string name="band_name">Band name</string>
+    <string name="genre_city">genre - city</string>
+    <string name="track">track</string>
+    <string name="album">album</string>
+    <string name="moment">Moment...</string>
+    <string name="noBandsFound">Žiadne kapely neboli nájdené</string>
+    <string name="noTracksText">Táto kapela nepublikovala žiadne skladby</string>
+    <string name="play_pause_button">play/pause button</string>
+    <string name="trackName">Názov skladby</string>
+    <string name="bandName">Skupina</string>
+    <string name="albumName">Album</string>
+    <string name="defaultTime">0:00</string>
+    <string name="previous_track">previous track</string>
+    <string name="next_track">next track</string>
+    <string name="stop_track">stop track</string>
+    <string name="minimize_player">minimize player</string>
+    <string name="open_band_profile">open band profile</string>
+    <string name="play_pause">play, pause</string>
+    <string name="remove_downloaded_track">Remove downloaded track</string>
+    <string name="force_offline_mode">Vynútiť režim offline</string>
+    <string name="track_is_saved">track is saved</string>
+</resources>

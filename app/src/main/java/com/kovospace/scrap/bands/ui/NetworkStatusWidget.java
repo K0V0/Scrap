@@ -1,10 +1,10 @@
-package com.kovospace.scrap.ui;
+package com.kovospace.scrap.bands.ui;
 
 import android.app.Activity;
 import android.content.Context;
 import android.widget.ImageButton;
 import com.kovospace.scrap.R;
-import com.kovospace.scrap.helpers.Connection;
+import com.kovospace.scrap.utils.Connection;
 
 public class NetworkStatusWidget
 {

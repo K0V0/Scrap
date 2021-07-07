@@ -1,17 +1,19 @@
-package com.kovospace.scrap;
+package com.kovospace.scrap.bands;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
-import com.kovospace.scrap.mainActivityClasses.BandsSearchService;
-import com.kovospace.scrap.ui.NetworkStatusWidget;
-import com.kovospace.scrap.ui.PlayerWidget;
+import com.kovospace.scrap.Activity;
+import com.kovospace.scrap.R;
+import com.kovospace.scrap.bands.ui.NetworkStatusWidget;
+import com.kovospace.scrap.bands.ui.PlayerWidget;
+import com.kovospace.scrap.bands.ui.SearchField;
 
 public  class BandsActivity
         extends Activity
 {
-    private BandsSearchService bandsSearchService;
+    private SearchField searchField;
     private PlayerWidget playerWidget;
     private NetworkStatusWidget networkStatusWidget;
 
@@ -20,7 +22,7 @@ public  class BandsActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.networkStatusWidget = new NetworkStatusWidget(this);
-        this.bandsSearchService = new BandsSearchService(BandsActivity.this, this);
+        this.searchField = new SearchField(this);
         this.playerWidget = new PlayerWidget(this);
     }
 
@@ -30,7 +32,7 @@ public  class BandsActivity
         if (super.connectionTest.isConnectionChanged()) {
             this.refreshActivity();
         }
-        this.bandsSearchService.onResumeChecks();
+        this.searchField.onResumeChecks();
         this.playerWidget.check();
     }
 
@@ -49,7 +51,7 @@ public  class BandsActivity
 
     public void refreshActivity() {
         Intent intent = new Intent(this, BandsActivity.class);
-        String extra = this.bandsSearchService.getSearchFieldText();
+        String extra = this.searchField.getSearchFieldText();
         if (extra.length() > 0) {
             intent.putExtra("searchString", extra);
         }

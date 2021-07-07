@@ -5,7 +5,8 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 
-public abstract class OnFinishTypingHelper {
+public abstract class OnFinishTypingHelper
+{
     private Handler handler = new Handler(Looper.getMainLooper());
     private long delay = 1000;
     private long last_text_edit = 0;
@@ -25,11 +26,9 @@ public abstract class OnFinishTypingHelper {
         this.text = text;
     }
 
-    private Runnable input_finish_checker = new Runnable() {
-        public void run() {
-            if (System.currentTimeMillis() > (last_text_edit + delay - 500)) {
-                doStuffNotOften();
-            }
+    private Runnable input_finish_checker = () -> {
+        if (System.currentTimeMillis() > (last_text_edit + delay - 500)) {
+            doStuffNotOften();
         }
     };
 

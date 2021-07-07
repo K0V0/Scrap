@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
 import androidx.appcompat.app.AppCompatActivity;
-import com.kovospace.scrap.helpers.Connection;
+import com.kovospace.scrap.utils.Connection;
 
 public  abstract class Activity
         extends AppCompatActivity

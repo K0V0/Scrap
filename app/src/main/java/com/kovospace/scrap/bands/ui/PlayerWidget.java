@@ -1,4 +1,4 @@
-package com.kovospace.scrap.ui;
+package com.kovospace.scrap.bands.ui;
 
 import android.animation.Animator;
 import android.app.Activity;

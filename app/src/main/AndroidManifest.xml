@@ -22,7 +22,7 @@
         <activity android:name="com.kovospace.scrap.SongsActivity">
         </activity>
 
-        <activity android:name="com.kovospace.scrap.BandsActivity">
+        <activity android:name="com.kovospace.scrap.bands.BandsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

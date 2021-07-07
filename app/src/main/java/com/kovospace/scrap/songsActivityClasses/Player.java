@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.*;
 import androidx.annotation.RequiresApi;
 import com.kovospace.scrap.R;
-import com.kovospace.scrap.helpers.Connection;
+import com.kovospace.scrap.utils.Connection;
 import com.kovospace.scrap.helpers.PlayerHelper;
 import com.kovospace.scrap.interfaces.BandProfileItem;
 import com.kovospace.scrap.objects.Band;

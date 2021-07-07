@@ -1,4 +1,4 @@
-package com.kovospace.scrap.ui;
+package com.kovospace.scrap.bands.ui;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;
@@ -7,8 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import com.kovospace.scrap.Activity;
-import com.kovospace.scrap.BandsActivity;
+import com.kovospace.scrap.bands.BandsActivity;
 import com.kovospace.scrap.R;
 import com.kovospace.scrap.helpers.Settings;
 
@@ -20,11 +19,12 @@ public class MainMenuPopup implements View.OnClickListener {
 
     public MainMenuPopup(Context context) {
         this.context = context;
-        this.networkStatusButton = ((Activity) context).findViewById(R.id.networkStatusButton);
+        this.networkStatusButton = ((BandsActivity) context).findViewById(R.id.networkStatusButton);
         wrapper = new ContextThemeWrapper(context, R.style.MyPopupStyle);
         popupMenu = new android.widget.PopupMenu(wrapper, networkStatusButton);
-        popupMenu.getMenuInflater()
-                .inflate(R.menu.popup_main_setings, popupMenu.getMenu());
+        popupMenu
+            .getMenuInflater()
+            .inflate(R.menu.popup_main_setings, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(new PopupMenuListener());
     }
 

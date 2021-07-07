@@ -38,7 +38,7 @@ import com.downloader.OnDownloadListener;
 import com.downloader.PRDownloader;
 import com.kovospace.scrap.R;
 import com.kovospace.scrap.databases.DbHelper;
-import com.kovospace.scrap.helpers.Connection;
+import com.kovospace.scrap.utils.Connection;
 import com.kovospace.scrap.helpers.Settings;
 import com.kovospace.scrap.interfaces.BandProfileItem;
 import com.kovospace.scrap.objects.Band;

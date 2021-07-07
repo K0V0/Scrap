@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">BandZone Player unofficial</string>
-    <string name="appTitle">BandZone.cz unofficial app</string>
+    <string name="app_name">Scrap</string>
+    <string name="appTitle">Scrap</string>
     <string name="vyhlada_kapelu">Vyhľadať kapelu</string>
     <string name="zadajKapelu">Zadaj názov/časť názvu kapely</string>
     <string name="loading">Moment, idem...</string>

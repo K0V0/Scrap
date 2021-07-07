@@ -5,11 +5,11 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.kovospace.bandzoneplayerunofficial"
-        minSdkVersion 16
+        applicationId "com.kovospace.scrap"
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 8
-        versionName "0.4.2-alpha"
+        versionName "0.5-alpha"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

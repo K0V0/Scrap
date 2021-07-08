@@ -7,5 +7,5 @@
 
 | date | dur. | work done |
 | --- | --- | --- |
-| 07.07.2021 | 3H | fork & move, refactor & cleanup of bands activity | 
-
+| 07.07.2021 | 5H | fork & move, refactor & cleanup of bands activity | 
+| 08.07.2021 | 10H | same, searching and pagination works (for online mode) | 

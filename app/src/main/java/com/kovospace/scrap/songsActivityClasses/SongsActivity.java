@@ -1,11 +1,10 @@
-package com.kovospace.scrap;
+package com.kovospace.scrap.songsActivityClasses;
 
 import android.content.Context;
 import android.os.Bundle;
 import com.downloader.PRDownloader;
-import com.kovospace.scrap.songsActivityClasses.BandWrapper;
-import com.kovospace.scrap.songsActivityClasses.BandWrapperNet;
-import com.kovospace.scrap.songsActivityClasses.BandWrapperOffline;
+import com.kovospace.scrap.appBase.Activity;
+import com.kovospace.scrap.R;
 
 public class SongsActivity extends Activity {
     public String slug;

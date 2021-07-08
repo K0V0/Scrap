@@ -1,15 +1,15 @@
 package com.kovospace.scrap.helpers;
 
-import com.kovospace.scrap.interfaces.BandProfileItem;
+import com.kovospace.scrap.bands.sources.BandItem;
 import com.kovospace.scrap.objects.Band;
 import com.kovospace.scrap.objects.Track;
 import java.util.List;
 
 public class PlayerHelper {
 
-    public static void updatePlayState(List<BandProfileItem> itemsList, Track currentTrack) {
+    public static void updatePlayState(List<BandItem> itemsList, Track currentTrack) {
         for (int i = 0; i < itemsList.size(); i++) {
-            BandProfileItem item = itemsList.get(i);
+            BandItem item = itemsList.get(i);
             if (item.getClass() == Track.class) {
                 if (((Track) item).getOrder() == currentTrack.getOrder()) {
                     ((Track) item).setPlaying(true);
@@ -20,8 +20,8 @@ public class PlayerHelper {
         }
     }
 
-    public static Band getBandFromList(List<BandProfileItem> list) {
-        for (BandProfileItem item : list) {
+    public static Band getBandFromList(List<BandItem> list) {
+        for (BandItem item : list) {
             if (item.getClass() == Band.class) {
                 return (Band) item;
             }
@@ -29,14 +29,14 @@ public class PlayerHelper {
         return null;
     }
 
-    public static boolean isBandInList(List<BandProfileItem> list, Band wantedBand) {
+    public static boolean isBandInList(List<BandItem> list, Band wantedBand) {
         Band listBand = getBandFromList(list);
         return listBand.getSlug().equals(wantedBand.getSlug());
     }
 
-    public static int posOfTrackInList(List<BandProfileItem> list, Track wantedTrack) {
+    public static int posOfTrackInList(List<BandItem> list, Track wantedTrack) {
         int index = -1;
-        for (BandProfileItem item : list) {
+        for (BandItem item : list) {
             if (item.getClass() == Track.class) {
                 if (item.contains(wantedTrack)) {
                     return list.indexOf(item);

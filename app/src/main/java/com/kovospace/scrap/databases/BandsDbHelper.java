@@ -2,6 +2,7 @@ package com.kovospace.scrap.databases;
 
 import android.app.Activity;
 import android.content.Context;
+import com.kovospace.scrap.bands.sources.BandEntity;
 import com.kovospace.scrap.objects.Band;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class BandsDbHelper extends DbHelper {
         offlineBandsRoomDatabase = OfflineBandsRoomDatabase.getInstance((Activity) context);
     }
 
-    public static void insertIfNotExist(Band band) {
+    /*public static void insertIfNotExist(Band band) {
         if (band != null && band.getTitle() != null) {
             bandEntity = new BandEntity(band);
             List<BandEntity> found = offlineBandsRoomDatabase.bandEntityDao().findBySlug(bandEntity.getSlug());
@@ -22,16 +23,16 @@ public class BandsDbHelper extends DbHelper {
                 offlineBandsRoomDatabase.bandEntityDao().insert(bandEntity);
             }
         }
-    }
+    }*/
 
     public static List<BandEntity> getAll() {
         return offlineBandsRoomDatabase.bandEntityDao().getAll();
     }
 
-    public static void delete(Band band) {
+    /*public static void delete(Band band) {
         bandEntity = new BandEntity(band);
         offlineBandsRoomDatabase.bandEntityDao().delete(bandEntity);
-    }
+    }*/
 
     public static void delete(String slug) {
         offlineBandsRoomDatabase.bandEntityDao().delete(slug);

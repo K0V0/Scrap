@@ -1,4 +1,4 @@
-package com.kovospace.scrap.utils;
+package com.kovospace.scrap.appBase.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

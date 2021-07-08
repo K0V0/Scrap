@@ -19,7 +19,7 @@
             android:usesCleartextTraffic="true"
             android:networkSecurityConfig="@xml/network_security_config" tools:targetApi="n">
 
-        <activity android:name="com.kovospace.scrap.SongsActivity">
+        <activity android:name="com.kovospace.scrap.songsActivityClasses.SongsActivity">
         </activity>
 
         <activity android:name="com.kovospace.scrap.bands.BandsActivity">

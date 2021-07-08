@@ -2,7 +2,7 @@ package com.kovospace.scrap.databases;
 
 import android.content.Context;
 import com.kovospace.scrap.helpers.Settings;
-import com.kovospace.scrap.interfaces.BandProfileItem;
+import com.kovospace.scrap.bands.sources.BandItem;
 import com.kovospace.scrap.objects.Band;
 import com.kovospace.scrap.objects.Track;
 
@@ -19,20 +19,20 @@ public abstract class DbHelper {
         offlineTracksRoomDatabase = OfflineTracksRoomDatabase.getInstance(context);
     }
 
-    public static void rememberBandAndTracksForOffline(List<BandProfileItem> bandProfileItem) {
+    public static void rememberBandAndTracksForOffline(List<BandItem> bandItem) {
         boolean downloadedAtLeastOne = false;
-        Band band = (Band) bandProfileItem.get(0);
+        Band band = (Band) bandItem.get(0);
 
-        for (int i = 1; i < bandProfileItem.size(); i++) {
-            if (((Track) bandProfileItem.get(i)).hasOfflineCopy()) {
+        for (int i = 1; i < bandItem.size(); i++) {
+            if (((Track) bandItem.get(i)).hasOfflineCopy()) {
                 downloadedAtLeastOne = true;
                 break;
             }
         }
         if (downloadedAtLeastOne) {
-            BandsDbHelper.insertIfNotExist(band);
-            for (int i = 1; i < bandProfileItem.size(); i++) {
-                TracksDbHelper.insertBandTrackIfNotExist((Track) bandProfileItem.get(i));
+            //BandsDbHelper.insertIfNotExist(band);
+            for (int i = 1; i < bandItem.size(); i++) {
+                TracksDbHelper.insertBandTrackIfNotExist((Track) bandItem.get(i));
             }
         } else {
             BandsDbHelper.delete(band.getSlug());

@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.kovospace.scrap.R;
 import com.kovospace.scrap.helpers.Settings;
-import com.kovospace.scrap.helpers.ToastMessage;
-import com.kovospace.scrap.interfaces.DataWrapper;
+import com.kovospace.scrap.appBase.ui.ToastMessage;
 import com.kovospace.scrap.objects.Band;
 import com.kovospace.scrap.objects.Page;
 import com.kovospace.scrap.songsActivityClasses.ImageFile;
@@ -18,7 +17,7 @@ import com.kovospace.scrap.songsActivityClasses.ImageFile;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BandsWrapper implements DataWrapper {
+public abstract class BandsWrapper {
     protected Context context;
     protected Activity activity;
     protected ImageFile imageFile;
@@ -51,11 +50,11 @@ public abstract class BandsWrapper implements DataWrapper {
         this.bandsLayoutManager = new LinearLayoutManager(this.activity);
         this.bandsRecyclerView.setLayoutManager(bandsLayoutManager);
         this.bandsRecyclerView.setHasFixedSize(true);
-        this.bandsAdapter = new BandsAdapter(this.context, bands);
+        //this.bandsAdapter = new BandsRecyclerView(this.context, bands);
         this.bandsRecyclerView.setAdapter(bandsAdapter);
         this.toastMessage = new ToastMessage(context);
         this.noBandsText = activity.findViewById(R.id.noBandsText);
-        this.dataSourceType = setDataSourceType();
+        //this.dataSourceType = setDataSourceType();
         afterConstruction();
     }
 
@@ -104,9 +103,9 @@ public abstract class BandsWrapper implements DataWrapper {
         this.itemsTotal = page.getItemsTotal();
         calculateNextPage();
         this.preventMultipleLoads = false;
-        if (dataSourceType == DATA_SOURCE_INTERNET) {
+        /*if (dataSourceType == DATA_SOURCE_INTERNET) {
             removeLoadingDialog();
-        }
+        }*/
     }
 
     private void updateBands(List<Band> bands) {
@@ -123,8 +122,10 @@ public abstract class BandsWrapper implements DataWrapper {
     }
 
     private void loadNext() {
-        currentOperation = OPERATION_NEXTPAGE;
+        //currentOperation = OPERATION_NEXTPAGE;
         loadNextContent();
+
+
     }
 
     private void checkIfNotEmpty() {
@@ -150,7 +151,7 @@ public abstract class BandsWrapper implements DataWrapper {
         for (int i = 0; i < bands.size(); i++) {
             Band band = bands.get(i);
             band.setImageFullLocalPath(imageFile);
-            band.hasOfflineCopy();
+            //band.hasOfflineCopy();
         }
         return bands;
     }
@@ -177,12 +178,12 @@ public abstract class BandsWrapper implements DataWrapper {
         for (int i = 0; i < this.bands.size(); i++) {
             bandSlug = this.bands.get(i).getSlug();
             if (bandSlug.equals(bandAllDownloadsRemoved)) {
-                this.bands.get(i).setFromDb(false);
+                //this.bands.get(i).setFromDb(false);
                 this.bandsAdapter.notifyItemChanged(i);
                 Settings.removeBandDowloadsRemoved();
             }
             if (bandSlug.equals(bandDownloadDone)) {
-                this.bands.get(i).setFromDb(true);
+                //this.bands.get(i).setFromDb(true);
                 this.bandsAdapter.notifyItemChanged(i);
                 Settings.removeBandTrackDownloadTrigger();
             }
@@ -190,19 +191,19 @@ public abstract class BandsWrapper implements DataWrapper {
     }
 
     public void handle(Page page) {
-        switch(currentOperation) {
+        /*switch(currentOperation) {
             case OPERATION_NEXTPAGE:
                 add(page);
                 break;
             case OPERATION_SEARCH:
                 update(page);
                 break;
-        }
+        }*/
     }
 
     public void search (String searchString) {
         this.searchString = searchString;
-        this.currentOperation = OPERATION_SEARCH;
+        //this.currentOperation = OPERATION_SEARCH;
         performSearch(this.searchString);
     }
 
@@ -222,10 +223,10 @@ public abstract class BandsWrapper implements DataWrapper {
                     if (nextPageToLoad != 0) {
                         if (!preventMultipleLoads) {
                             preventMultipleLoads = true;
-                            loadNext();
-                            if (dataSourceType == DATA_SOURCE_INTERNET) {
+                            //loadNext();
+                            /*if (dataSourceType == DATA_SOURCE_INTERNET) {
                                 displayLoadingDialog();
-                            }
+                            }*/
                         }
                     } else {
                         if (currentPage == pages) {

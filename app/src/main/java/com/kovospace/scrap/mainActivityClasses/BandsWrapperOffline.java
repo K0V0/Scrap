@@ -2,7 +2,7 @@ package com.kovospace.scrap.mainActivityClasses;
 
 import android.app.Activity;
 import android.content.Context;
-import com.kovospace.scrap.databases.BandEntity;
+import com.kovospace.scrap.bands.sources.BandEntity;
 import com.kovospace.scrap.databases.BandsDbHelper;
 import com.kovospace.scrap.helpers.Misc;
 import com.kovospace.scrap.objects.Band;
@@ -17,10 +17,10 @@ public class BandsWrapperOffline extends BandsWrapper {
     private List<Band> bandsList;
     private List<BandEntity> bandEntities;
 
-    @Override
+    /*@Override
     public int setDataSourceType() {
         return DATA_SOURCE_LOCAL;
-    }
+    }*/
 
     public BandsWrapperOffline() {
         init();
@@ -45,51 +45,51 @@ public class BandsWrapperOffline extends BandsWrapper {
             bandsList.add(new Band(
                     bandEntity.getTitle(),
                     bandEntity.getCity(),
-                    bandEntity.getImage_url(),
+                    bandEntity.getImageUrl(),
                     bandEntity.getHref(),
                     bandEntity.getSlug(),
                     bandEntity.getGenre(),
                     "bandzone"
             ));
             bandsList.get(i).setImageFullLocalPath(bandEntity.getImageFullLocalPath());
-            bandsList.get(i).setFromDb(true);
+            //bandsList.get(i).setFromDb(true);
         }
     }
 
-    private void applyData(int pageNum) {
+    /*private void applyData(int pageNum) {
         page = new Page(
                 pageNum,
-                ITEMS_PER_PAGE,
+                //ITEMS_PER_PAGE,
                 bandsList.size(),
-                Misc.calculatePagesCount(dbResultsCount, ITEMS_PER_PAGE),
+                //Misc.calculatePagesCount(dbResultsCount, ITEMS_PER_PAGE),
                 dbResultsCount,
                 bandsList
         );
-    }
+    }*/
 
     @Override
     protected void performSearch(String s) {
-        performNonModifyingSearch(s);
+        //performNonModifyingSearch(s);
         handle(page);
     }
 
     @Override
     protected void loadNextContent() {
-        performNonModifyingSearch(searchString, nextPageToLoad);
+        //performNonModifyingSearch(searchString, nextPageToLoad);
         handle(page);
     }
 
-    public Page performNonModifyingSearch(String s) {
+    /*public Page performNonModifyingSearch(String s) {
         this.dbResultsCount = BandsDbHelper.getCount(s);
-        return performNonModifyingSearch(s, 1);
-    }
+        //return performNonModifyingSearch(s, 1);
+    }*/
 
-    public Page performNonModifyingSearch(String s, int pageNum) {
+    /*public Page performNonModifyingSearch(String s, int pageNum) {
         this.bandEntities = BandsDbHelper.findByName(s, ITEMS_PER_PAGE, ITEMS_PER_PAGE*(pageNum-1));
         populateData();
         applyData(pageNum);
         return page;
-    }
+    }*/
 
     public int getDbResultsCount() {
         return dbResultsCount;

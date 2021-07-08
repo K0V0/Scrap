@@ -5,9 +5,9 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kovospace.scrap.bands.BandsActivity;
-import com.kovospace.scrap.utils.Connection;
+import com.kovospace.scrap.appBase.utils.Connection;
 import com.kovospace.scrap.helpers.JsonRequest;
-import com.kovospace.scrap.helpers.SearchFieldProgress;
+import com.kovospace.scrap.bands.ui.SearchFieldProgress;
 import com.kovospace.scrap.objects.Band;
 import com.kovospace.scrap.objects.Page;
 import org.json.JSONArray;
@@ -16,6 +16,7 @@ import org.json.JSONException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import org.json.JSONObject;
 
 public class BandsWrapperNet extends BandsWrapper {
     private final String QUERY_URL = "http://172.104.155.216:4000/bandzone/bands?q=";
@@ -45,12 +46,12 @@ public class BandsWrapperNet extends BandsWrapper {
         }
 
         @Override
-        public void doStuff() {
+        public void doStuff(JSONObject jsonObject) {
             try {
                 bandsJsonArrray = responseData.getJSONArray("bands");
                 bandsList = gson.fromJson(String.valueOf(bandsJsonArrray), bandsListType);
                 if (bandsList.size() > 0) {
-                    page = new Page(
+                    /*page = new Page(
                             currentPage + 1,
                             ITEMS_PER_PAGE,
                             responseData.getInt("currentPageItemsCount"),
@@ -58,7 +59,7 @@ public class BandsWrapperNet extends BandsWrapper {
                             responseData.getInt("totalItemsCount") + offlinePage.getItemsTotal(),
                             bandsList
                     );
-                    add(page);
+                    add(page);*/
                 }
                 SearchFieldProgress.stop();
             } catch (JSONException e) {
@@ -69,14 +70,14 @@ public class BandsWrapperNet extends BandsWrapper {
 
     @Override
     protected void performSearch(String s) {
-        offlinePage = bandsWrapperOffline.performNonModifyingSearch(s);
+        //offlinePage = bandsWrapperOffline.performNonModifyingSearch(s);
         handle(offlinePage);
         SearchFieldProgress.start();
-        if (offlinePage.getItemsOnCurrentPage() < bandsWrapperOffline.ITEMS_PER_PAGE) {
-            bandsJsonRequest.fetch(QUERY_URL + s);
+        /*if (offlinePage.getItemsOnCurrentPage() < bandsWrapperOffline.ITEMS_PER_PAGE) {
+           /// bandsJsonRequest.fetch(QUERY_URL + s);
         } else {
             SearchFieldProgress.stop();
-        }
+        }*/
     }
 
     @Override
@@ -95,21 +96,21 @@ public class BandsWrapperNet extends BandsWrapper {
     }
 
     private void doLoad() {
-        offlinePage = bandsWrapperOffline.performNonModifyingSearch(searchString, nextPageToLoad);
-        if (offlinePage.getItemsOnCurrentPage() == bandsWrapperOffline.ITEMS_PER_PAGE) {
+        //offlinePage = bandsWrapperOffline.performNonModifyingSearch(searchString, nextPageToLoad);
+        /*if (offlinePage.getItemsOnCurrentPage() == bandsWrapperOffline.ITEMS_PER_PAGE) {
             handle(offlinePage);
         } else {
             if (offlinePage.getItemsOnCurrentPage() > 0) {
                 handle(offlinePage);
             }
             query = QUERY_URL + searchString + "&p=" + (nextPageToLoad - offlinePage.getPages());
-            bandsJsonRequest.fetch(query);
-        }
+           // bandsJsonRequest.fetch(query);
+        }*/
     }
 
-    @Override
+    /*@Override
     public int setDataSourceType() {
         return DATA_SOURCE_INTERNET;
-    }
+    }*/
 
 }

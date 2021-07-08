@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import org.json.JSONObject;
 
 public class BandWrapperNet extends BandWrapper {
     private final String QUERY_URL = "http://172.104.155.216:4000/bandzone/band?q=";
@@ -18,14 +19,14 @@ public class BandWrapperNet extends BandWrapper {
 
     public BandWrapperNet(Activity activity, Context context, String extra) {
         super(activity, context, extra);
-        bandJsonRequest = new BandJsonRequest(this.activity, QUERY_URL + this.extra);
-        bandJsonRequest.fetch();
+        /*bandJsonRequest = new BandJsonRequest(this.activity, QUERY_URL + this.extra);
+        bandJsonRequest.fetch();*/
     }
 
-    @Override
+    /*@Override
     public int setDataSourceType() {
         return DATA_SOURCE_INTERNET;
-    }
+    }*/
 
     public class BandJsonRequest extends JsonRequest {
         private Gson gson = new Gson();
@@ -37,7 +38,7 @@ public class BandWrapperNet extends BandWrapper {
         }
 
         @Override
-        public void doStuff() {
+        public void doStuff(JSONObject jsonObject) {
             try {
                 band = new Band(
                         responseData.getString("title"),

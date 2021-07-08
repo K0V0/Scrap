@@ -1,4 +1,4 @@
-package com.kovospace.scrap;
+package com.kovospace.scrap.appBase;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.Settings;
 import androidx.appcompat.app.AppCompatActivity;
-import com.kovospace.scrap.utils.Connection;
+import com.kovospace.scrap.appBase.utils.Connection;
 
 public  abstract class Activity
         extends AppCompatActivity

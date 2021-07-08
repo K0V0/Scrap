@@ -1,69 +1,53 @@
 package com.kovospace.scrap.helpers;
 
 import android.app.Activity;
+import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.kovospace.scrap.R;
+import com.kovospace.scrap.appBase.ui.ToastMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public abstract class JsonRequest {
+public abstract class JsonRequest
+{
     protected Activity activity;
     protected String query;
     protected JSONObject responseData;
     protected ToastMessage toastMessage;
 
-    public JsonRequest(Activity activity) {
-        this(activity, "");
+    public JsonRequest(Context context) {
+        this(context, "");
     }
-    public JsonRequest(Activity activity, String query) {
+
+    public JsonRequest(Context context, String query) {
         this.query = query;
-        this.activity = activity;
-        toastMessage = new ToastMessage(activity);
+        this.activity = (Activity) context;
+        this.init();
     }
 
-    public abstract void doStuff();
-
-    public void setQuery(String query) {
-        this.query = query;
+    private void init() {
+        this.toastMessage = new ToastMessage(this.activity);
+        this.requestData();
     }
 
-    public void fetch() {
-        requestData();
-    }
+    public abstract void doStuff(JSONObject responseData);
 
-    public void fetch(String query) {
-        setQuery(query);
-        requestData();
-    }
-
-    private void validateQuery() {
-        this.query = this.query.replace(" ", "%20");
+    private String escape(String query) {
+       return query.replace(" ", "%20");
     }
 
     private void requestData() {
-        validateQuery();
-        StringRequest request = new StringRequest(Request.Method.GET, this.query, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String s) {
-                try {
-                    responseData = new JSONObject(s);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                doStuff();
+        StringRequest request = new StringRequest(Request.Method.GET, escape(this.query), s -> {
+            try {
+                responseData = new JSONObject(s);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                toastMessage.send(R.string.noInternet);
-            }
-        });
-
+            doStuff(responseData);
+        }, volleyError -> toastMessage.send(R.string.noInternet));
         RequestQueue rQueue = Volley.newRequestQueue(activity);
         rQueue.add(request);
     }

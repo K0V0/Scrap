@@ -2,7 +2,7 @@ package com.kovospace.scrap.songsActivityClasses;
 
 import android.app.Activity;
 import android.content.Context;
-import com.kovospace.scrap.databases.BandEntity;
+import com.kovospace.scrap.bands.sources.BandEntity;
 import com.kovospace.scrap.databases.BandsDbHelper;
 import com.kovospace.scrap.databases.TrackEntity;
 import com.kovospace.scrap.databases.TracksDbHelper;
@@ -15,10 +15,10 @@ public class BandWrapperOffline extends BandWrapper {
     private BandEntity bandEntity;
     private List<TrackEntity> trackEntities;
 
-    @Override
+    /*@Override
     public int setDataSourceType() {
         return DATA_SOURCE_LOCAL;
-    }
+    }*/
 
     public BandWrapperOffline(Activity activity, Context context, String extra) {
         super(activity, context, extra);
@@ -36,7 +36,7 @@ public class BandWrapperOffline extends BandWrapper {
         band = new Band(
                 bandEntity.getTitle(),
                 bandEntity.getCity(),
-                bandEntity.getImage_url(),
+                bandEntity.getImageUrl(),
                 bandEntity.getHref(),
                 extra,
                 bandEntity.getGenre(),

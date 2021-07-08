@@ -1,4 +1,4 @@
-package com.kovospace.scrap.helpers;
+package com.kovospace.scrap.bands.ui;
 
 import android.app.Activity;
 import android.content.Context;

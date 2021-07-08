@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.ImageButton;
 import com.kovospace.scrap.R;
-import com.kovospace.scrap.utils.Connection;
+import com.kovospace.scrap.appBase.utils.Connection;
 
 public class NetworkStatusWidget
 {

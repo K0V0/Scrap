@@ -5,9 +5,8 @@ import android.widget.EditText;
 import com.kovospace.scrap.R;
 import com.kovospace.scrap.bands.BandsActivity;
 import com.kovospace.scrap.bands.BandsService;
-import com.kovospace.scrap.utils.Connection;
+import com.kovospace.scrap.appBase.utils.Connection;
 import com.kovospace.scrap.helpers.OnFinishTypingHelper;
-import com.kovospace.scrap.helpers.SearchFieldProgress;
 import java.util.Optional;
 
 public  class SearchField
@@ -65,24 +64,9 @@ public  class SearchField
         }
     }
 
-    /*private void chooseDataSource() {
-        connection.getConnectionMethod();
-        if (connection.isConnectionChanged()) {
-            if (connection.isConnectionAvailable()) {
-                //this.bandsWrapper = new BandsWrapperNet(bandsActivity, context, connection);
-            } else {
-                //this.bandsWrapper = new BandsWrapperOffline(bandsActivity, context);
-            }
-        }
-    }*/
-
     public void pauseTextListenerOnce() {
         this.pauseSearch = true;
     }
-
-    /*public void resumeTextListener() {
-        this.pauseSearch = false;
-    }*/
 
     public String getSearchFieldText() {
         return this.bandSearchField.getText().toString();

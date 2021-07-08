@@ -8,22 +8,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.kovospace.scrap.R;
 import com.kovospace.scrap.databases.DbHelper;
-import com.kovospace.scrap.interfaces.BandProfileItem;
-import com.kovospace.scrap.interfaces.DataWrapper;
+import com.kovospace.scrap.bands.sources.BandItem;
 import com.kovospace.scrap.objects.Band;
 import com.kovospace.scrap.objects.Track;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BandWrapper implements DataWrapper {
+public abstract class BandWrapper {
     protected Activity activity;
     protected Context context;
     protected String extra;
 
     protected Band band;
     protected List<Track> tracks;
-    protected List<BandProfileItem> bandProfileItems;
+    protected List<BandItem> bandItems;
     protected Mp3File mp3File;
     protected ImageFile imageFile;
 
@@ -45,9 +44,9 @@ public abstract class BandWrapper implements DataWrapper {
     }
 
     private void inits() {
-        this.dataSourceType = setDataSourceType();
+        //this.dataSourceType = setDataSourceType();
         this.tracks = new ArrayList<>();
-        this.bandProfileItems = new ArrayList<>();
+        this.bandItems = new ArrayList<>();
         this.mp3File = new Mp3File(this.context);
         this.imageFile = new ImageFile(this.context);
     }
@@ -61,9 +60,9 @@ public abstract class BandWrapper implements DataWrapper {
         this.tracksLayoutManager = new LinearLayoutManager(activity);
         this.tracksRecyclerView.setLayoutManager(tracksLayoutManager);
         this.tracksRecyclerView.setHasFixedSize(true);
-        this.tracksAdapter = new TracksAdapter(this.context, bandProfileItems);
+        this.tracksAdapter = new TracksAdapter(this.context, bandItems);
         this.tracksRecyclerView.setAdapter(tracksAdapter);
-        this.dataSourceType = setDataSourceType();
+        //this.dataSourceType = setDataSourceType();
     }
 
     private List<Track> addExtraData(List<Track> trackList) {
@@ -82,7 +81,7 @@ public abstract class BandWrapper implements DataWrapper {
 
     private void noTracksMessage() {
         int trackCount = 0;
-        for (BandProfileItem item : bandProfileItems) {
+        for (BandItem item : bandItems) {
             if (item.getClass() == Track.class) {
                 trackCount++;
             }
@@ -94,13 +93,13 @@ public abstract class BandWrapper implements DataWrapper {
 
     public void triggerShow() {
         // runs after data retrieved from wrapper (JSON or local)
-        bandProfileItems.clear();
+        bandItems.clear();
         band.setImageFullLocalPath(imageFile);
-        band.hasOfflineCopy();
-        bandProfileItems.add(band);
-        bandProfileItems.addAll(addExtraData(tracks));
-        DbHelper.rememberBandAndTracksForOffline(bandProfileItems);
-        tracksAdapter.notifyItemInserted(bandProfileItems.size() - 1);
+        //band.hasOfflineCopy();
+        bandItems.add(band);
+        bandItems.addAll(addExtraData(tracks));
+        DbHelper.rememberBandAndTracksForOffline(bandItems);
+        tracksAdapter.notifyItemInserted(bandItems.size() - 1);
         noTracksMessage();
     }
 

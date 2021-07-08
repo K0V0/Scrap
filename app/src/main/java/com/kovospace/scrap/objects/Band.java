@@ -1,11 +1,9 @@
 package com.kovospace.scrap.objects;
 
-import com.kovospace.scrap.interfaces.BandProfileItem;
+import com.kovospace.scrap.bands.sources.BandItem;
 import com.kovospace.scrap.songsActivityClasses.ImageFile;
 
-import java.io.File;
-
-public class Band implements BandProfileItem {
+public class Band implements BandItem {
     private String title;
     private String city;
     private String imageUrl;
@@ -79,7 +77,7 @@ public class Band implements BandProfileItem {
     }
 
     @Override
-    public boolean contains(BandProfileItem o) {
+    public boolean contains(BandItem o) {
         return this.equals(o);
     }
 
@@ -113,14 +111,14 @@ public class Band implements BandProfileItem {
         }
     }
 
-    @Override
+   /* @Override
     public boolean hasOfflineCopy() {
         File file = new File(getImageFullLocalPath());
         imageAvailableOffline = file.exists() && !file.isDirectory();
         return imageAvailableOffline;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean isAvailableOffline() {
         return imageAvailableOffline;
     }
@@ -131,5 +129,5 @@ public class Band implements BandProfileItem {
 
     public void setFromDb(boolean fromDb) {
         this.fromDb = fromDb;
-    }
+    }*/
 }

@@ -38,9 +38,9 @@ import com.downloader.OnDownloadListener;
 import com.downloader.PRDownloader;
 import com.kovospace.scrap.R;
 import com.kovospace.scrap.databases.DbHelper;
-import com.kovospace.scrap.utils.Connection;
+import com.kovospace.scrap.appBase.utils.Connection;
 import com.kovospace.scrap.helpers.Settings;
-import com.kovospace.scrap.interfaces.BandProfileItem;
+import com.kovospace.scrap.bands.sources.BandItem;
 import com.kovospace.scrap.objects.Band;
 import com.kovospace.scrap.objects.Track;
 
@@ -49,13 +49,13 @@ import java.util.List;
 public class TracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context context;
-    private List<BandProfileItem> listRecyclerItem;
+    private List<BandItem> listRecyclerItem;
     private Mp3File mp3File;
     private ImageFile imageFile;
     private Connection connectionTester;
     private boolean isOnline;
 
-    public TracksAdapter(Context context, List<BandProfileItem> listRecyclerItem) {
+    public TracksAdapter(Context context, List<BandItem> listRecyclerItem) {
         this.context = context;
         this.listRecyclerItem = listRecyclerItem; // null here on init or zero size - check
         this.mp3File = new Mp3File(this.context);
@@ -273,9 +273,9 @@ public class TracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         String className = listRecyclerItem.get(position).getClass().getSimpleName();
         switch (className) {
             case "Track":
-                return BandProfileItem.TYPE_TRACK * (position+1);
+                return BandItem.TYPE_TRACK * (position+1);
             case "Band":
-                return BandProfileItem.TYPE_BAND * (position+1);
+                return BandItem.TYPE_BAND * (position+1);
             default:
                 return 0;
         }

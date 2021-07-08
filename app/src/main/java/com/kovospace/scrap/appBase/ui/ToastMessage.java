@@ -1,4 +1,4 @@
-package com.kovospace.scrap.helpers;
+package com.kovospace.scrap.appBase.ui;
 
 import android.content.Context;
 import android.view.Gravity;

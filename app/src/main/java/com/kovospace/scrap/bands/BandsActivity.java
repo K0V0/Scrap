@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
-import com.kovospace.scrap.Activity;
+import com.kovospace.scrap.appBase.Activity;
 import com.kovospace.scrap.R;
 import com.kovospace.scrap.bands.ui.NetworkStatusWidget;
 import com.kovospace.scrap.bands.ui.PlayerWidget;

@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.*;
 import com.kovospace.scrap.R;
-import com.kovospace.scrap.SongsActivity;
+import com.kovospace.scrap.songsActivityClasses.SongsActivity;
 import com.kovospace.scrap.helpers.Misc;
 import com.kovospace.scrap.helpers.SlideAnimation;
 import com.kovospace.scrap.objects.Band;

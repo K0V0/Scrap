@@ -1,4 +1,4 @@
-package com.kovospace.scrap.mainActivityClasses;
+package com.kovospace.scrap.bands.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,19 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.kovospace.scrap.R;
-import com.kovospace.scrap.SongsActivity;
-import com.kovospace.scrap.objects.Band;
+import com.kovospace.scrap.songsActivityClasses.SongsActivity;
+import com.kovospace.scrap.bands.sources.BandEntity;
 
 import java.util.List;
 
-public class BandsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class BandsRecyclerView extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_LOADING = 1;
     private final Context context;
-    private List<Band> listRecyclerItem;
+    private List<BandEntity> listRecyclerItem;
 
-    public BandsAdapter(Context context, List<Band> listRecyclerItem) {
+    public BandsRecyclerView(Context context, List<BandEntity> listRecyclerItem) {
         this.context = context;
         this.listRecyclerItem = listRecyclerItem;
     }
@@ -54,8 +54,8 @@ public class BandsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             context.startActivity(myIntent);
         }
 
-        private Band findBand(String bandName) {
-            for (Band band : listRecyclerItem) {
+        private BandEntity findBand(String bandName) {
+            for (BandEntity band : listRecyclerItem) {
                 if (bandName == band.getTitle()) {
                     return band;
                 }
@@ -97,10 +97,10 @@ public class BandsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 break;
             case VIEW_TYPE_ITEM:
                 BandViewHolder bandViewHolder = (BandViewHolder) viewHolder;
-                Band band = (Band) listRecyclerItem.get(i);
+                BandEntity band = (BandEntity) listRecyclerItem.get(i);
                 bandViewHolder.name.setText(band.getTitle());
                 Glide.with(this.context).load(band.getLocalOrHref()).into(bandViewHolder.coverArt);
-                bandViewHolder.styl.setText(band.getGenre() + " - " + band.getCity());
+                bandViewHolder.styl.setText(String.format("%s - %s", band.getGenre(), band.getCity()));
                 if (band.isFromDb()) { bandViewHolder.isOnSD.setVisibility(View.VISIBLE); }
                 else { bandViewHolder.isOnSD.setVisibility(View.INVISIBLE); }
                 break;
@@ -118,5 +118,4 @@ public class BandsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public int getItemCount() {
         return listRecyclerItem.size();
     }
-
 }

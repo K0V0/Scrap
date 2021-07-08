@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.*;
 import androidx.annotation.RequiresApi;
 import com.kovospace.scrap.R;
-import com.kovospace.scrap.utils.Connection;
+import com.kovospace.scrap.appBase.utils.Connection;
 import com.kovospace.scrap.helpers.PlayerHelper;
-import com.kovospace.scrap.interfaces.BandProfileItem;
+import com.kovospace.scrap.bands.sources.BandItem;
 import com.kovospace.scrap.objects.Band;
 import com.kovospace.scrap.objects.Track;
 
@@ -28,7 +28,7 @@ public class Player {
 
     private static int playerUsedIn;
     private static MediaPlayer mediaPlayer;
-    private static List<BandProfileItem> items;
+    private static List<BandItem> items;
     private static Track currentTrack;
     private static int currentTrackIndex;
     private static int lastTrackIndex;
@@ -192,7 +192,7 @@ public class Player {
         }
     }
 
-    public static void setTracklist(List<BandProfileItem> list) {
+    public static void setTracklist(List<BandItem> list) {
         items = list;
         currentBand = PlayerHelper.getBandFromList(items);
     }
@@ -266,9 +266,9 @@ public class Player {
         if (items.get(currentTrackIndex).getClass() != Track.class) {
             switchTrack();
         }
-        if (!connected && !items.get(currentTrackIndex).isAvailableOffline()) {
+        /*if (!connected && !items.get(currentTrackIndex).isAvailableOffline()) {
             switchTrack();
-        }
+        }*/
         currentTrack = (Track) items.get(currentTrackIndex);
         uri = Uri.parse(currentTrack.getLocalOrHref());
         if (mediaPlayer == null) {
@@ -287,7 +287,7 @@ public class Player {
         }
     }
 
-    public static void showPlayerIfPlaying(List<BandProfileItem> list) {
+    public static void showPlayerIfPlaying(List<BandItem> list) {
         if (isPlaying() || isPaused()) {
             if ((currentBand != null) && (list != null)) {
                 if (PlayerHelper.isBandInList(list, (Band) currentBand)) {
@@ -295,7 +295,7 @@ public class Player {
                         connectionTester.getConnectionMethod();
                         if (connectionTester.isConnectionAvailable() || currentTrack.isAvailableOffline()) {
                             int pos = PlayerHelper.posOfTrackInList(list, (Track) currentTrack);
-                            list.set(pos, (BandProfileItem) currentTrack); // mozno prekastovat ??
+                            list.set(pos, (BandItem) currentTrack); // mozno prekastovat ??
                         }
                     }
                 } else {

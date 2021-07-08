@@ -1,11 +1,11 @@
 package com.kovospace.scrap.objects;
 
-import com.kovospace.scrap.interfaces.BandProfileItem;
+import com.kovospace.scrap.bands.sources.BandItem;
 import com.kovospace.scrap.songsActivityClasses.Mp3File;
 
 import java.io.File;
 
-public class Track implements BandProfileItem {
+public class Track implements BandItem {
     private String fullTitle;
     private String title;
     private String album;
@@ -151,7 +151,7 @@ public class Track implements BandProfileItem {
     }
 
     @Override
-    public boolean contains(BandProfileItem o) {
+    public boolean contains(BandItem o) {
         return this.hrefHash.equals(((Track) o).getHrefHash());
     }
 }
